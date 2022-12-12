@@ -11,4 +11,4 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt-get update
 sudo apt-get install -y jenkins
 
-echo "Your default Jenkins password is: $(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)"
+sudo echo "Your default Jenkins password is: $(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)"
