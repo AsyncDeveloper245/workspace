@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 OPERATION=$1
 APP_NAME=$2
