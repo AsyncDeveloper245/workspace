@@ -6,7 +6,7 @@ APP_PORT=$3
 Vhost=/etc/nginx/sites-available/$APP_NAME
 Sites_Enabled=/etc/nginx/sites-enabled
 
-if [$OPERATION == "create"]
+if [$OPERATION -eq create]
 then
     echo "Creating Virtual Host"
     sudo touch $Vhost
@@ -38,7 +38,7 @@ EOF
     echo "Nginx restarted successfully......"
     
     
-elif [$OPERATION == "delete"]
+elif [$OPERATION == delete]
 then
     sudo unlink /etc/nginx/sites-enabled/$APP_NAME
     sudo rm -f /etc/nginx/sites-available/$APP_NAME
