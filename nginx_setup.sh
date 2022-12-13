@@ -1,12 +1,12 @@
 #!/bin/sh
 
-OPERATION=$1
-APP_NAME=$2
-APP_PORT=$3
+OPERATION="$1"
+APP_NAME="$2"
+APP_PORT="$3"
 Vhost=/etc/nginx/sites-available/$APP_NAME
 Sites_Enabled=/etc/nginx/sites-enabled
 
-if [[ "$OPERATION" -eq create ]]
+if [[ $OPERATION == create ]]
 then
     echo "Creating Virtual Host"
     sudo touch $Vhost
@@ -38,7 +38,7 @@ EOF
     echo "Nginx restarted successfully......"
     
     
-elif [[ "$OPERATION" -eq delete ]]
+elif [[ "$OPERATION" == delete ]]
 then
     sudo unlink /etc/nginx/sites-enabled/$APP_NAME
     sudo rm -f /etc/nginx/sites-available/$APP_NAME
