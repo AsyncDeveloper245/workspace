@@ -45,7 +45,6 @@ then
     sudo nginx -t | grep 'ok' && sudo systemctl restart nginx
     echo "Nginx restarted successfully......"
 else
-then
     echo "Incorrect Input....."
 
 fi
