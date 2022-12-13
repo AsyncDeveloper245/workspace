@@ -12,7 +12,7 @@ then
     sudo touch $Vhost
 
     echo "Configuring ${APP_NAME} with the specified configuration.........."
-    sudo cat << EOF > $Vhost
+    sudo tee <<EOF > $Vhost
         server {
                 listen 80;
                 listen [::]:80;
@@ -30,7 +30,7 @@ then
                         proxy_pass http://localhost:$APP_PORT;
                 }
         }
-    EOF
+EOF
 
     echo "Creating a symlink of ${APP_NAME}"
     sudo ln -s $Vhost $Sites_Enabled
@@ -44,6 +44,9 @@ then
     sudo rm -f /etc/nginx/sites-available/$APP_NAME
     sudo nginx -t | grep 'ok' && sudo systemctl restart nginx
     echo "Nginx restarted successfully......"
+else
+then
+    echo "Incorrect Input....."
 
 fi
 
