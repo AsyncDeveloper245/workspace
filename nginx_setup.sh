@@ -1,13 +1,13 @@
 #!/bin/sh
+ OPERATION="$1"
 
-OPERATION="$1"
-APP_NAME="$2"
-APP_PORT="$3"
 Vhost=/etc/nginx/sites-available/$APP_NAME
 Sites_Enabled=/etc/nginx/sites-enabled
 
 if [[ $OPERATION -eq create ]]
 then
+    APP_NAME="$2"
+    APP_PORT="$3"
     echo "Creating Virtual Host"
     sudo touch $Vhost
 
@@ -30,6 +30,7 @@ then
                         proxy_pass http://localhost:$APP_PORT;
                 }
         }
+        
 EOF
 
     echo "Creating a symlink of ${APP_NAME}"
@@ -40,10 +41,11 @@ EOF
     
 elif [[ $OPERATION -eq delete ]]
 then
+    APP_NAME="$2"
     sudo unlink /etc/nginx/sites-enabled/$APP_NAME
     sudo rm -f /etc/nginx/sites-available/$APP_NAME
     sudo nginx -t | grep 'ok' && sudo systemctl restart nginx
-    echo "Nginx restarted successfully......"
+    echo "VirtualHost deleted and Nginx restarted successfully......"
 else
     echo "Incorrect Input....."
 
